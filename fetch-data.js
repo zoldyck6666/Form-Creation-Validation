@@ -6,8 +6,10 @@ async function fetchUserData() {
         const response = await fetch(apiUrl);
         const users = await response.json();
 
-        dataContainer.innerHTML = ''; // Clear loading text
+        // Clear the loading message
+        dataContainer.innerHTML = '';
 
+        // Create and populate the user list
         const userList = document.createElement('ul');
         users.forEach(user => {
             const listItem = document.createElement('li');
@@ -19,7 +21,9 @@ async function fetchUserData() {
     } catch (error) {
         dataContainer.innerHTML = '';
         dataContainer.textContent = 'Failed to load user data.';
+        console.error('Fetch error:', error);
     }
 }
 
+// Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', fetchUserData);
